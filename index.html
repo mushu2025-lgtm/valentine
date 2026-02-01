@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Valentine 💖</title>
+
+  <!-- MOBILE MAGIC -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      background: #ffe6f0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      width: 90%;
+      max-width: 330px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    h3 {
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    button {
+      width: 100%;
+      font-size: 18px;
+      padding: 14px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    #yes {
+      background: #ff4d88;
+      color: white;
+    }
+
+    #no {
+      background: #e0e0e0;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 22px;
+    }
+
+    .confetti {
+      position: fixed;
+      font-size: 24px;
+      animation: fall linear infinite;
+      top: -40px;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h3>Will you be my Valentine, <b>Tarun</b>? 💖</h3>
+
+    <button id="yes" onclick="yesClicked()">Yes 🥰</button>
+    <button id="no" onmouseover="moveNo()" onclick="noClicked()">No 🙄</button>
+
+    <div id="message"></div>
+  </div>
+
+  <script>
+    function moveNo() {
+      const no = document.getElementById("no");
+      const maxX = window.innerWidth - 120;
+      const maxY = window.innerHeight - 120;
+
+      no.style.left = Math.random() * maxX + "px";
+      no.style.top = Math.random() * maxY + "px";
+    }
+
+    function yesClicked() {
+      document.getElementById("message").innerHTML =
+        "YAYYY 🥳💖🎉<br>Celebration time!";
+
+      for (let i = 0; i < 30; i++) {
+        let emoji = document.createElement("div");
+        emoji.innerHTML = "🎉🥳💖";
+        emoji.className = "confetti";
+        emoji.style.left = Math.random() * 100 + "vw";
+        emoji.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        document.body.appendChild(emoji);
+
+        setTimeout(() => emoji.remove(), 4000);
+      }
+    }
+
+    function noClicked() {
+      document.getElementById("message").innerHTML =
+        "🖕😌<br>Nice try 😂";
+    }
+  </script>
+
+</body>
+</html>
